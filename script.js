@@ -7,6 +7,7 @@ const keyBoard = {
         this.setVirtKeyListener();
         this.setKeyBoardListener();
     },
+    // uppercase letters
     turnCaps: function () {
         this.keys.forEach((sKeys) => {
             if (sKeys.innerHTML === "CAPS") {
@@ -21,7 +22,7 @@ const keyBoard = {
         })
         this.caps = !this.caps;
     },
-
+    // add click event to each of the keys in the layput
     setVirtKeyListener: function () {
         this.keys.forEach((sKey, index) => {
             sKey.addEventListener('click', () => {
@@ -29,11 +30,13 @@ const keyBoard = {
             })
         })
     },
+    // add listener to key press from the keyboard
     setKeyBoardListener: function () {
         document.addEventListener('keypress', (e) => {
             this.playSoundOnkeyboad(e)
         })
     },
+    // when keypress on virtual keyboard
     playSound: function (sKey) {
         if (sKey.innerHTML === "CAPS") {
             this.turnCaps()
@@ -45,6 +48,7 @@ const keyBoard = {
             this.setaudio();
         }
     },
+    // when keypress on actual keyboard
     playSoundOnkeyboad: function (skey) {
         this.indicator.innerHTML = skey.key;
         this.indicator.classList.remove('key__animation');
@@ -52,6 +56,7 @@ const keyBoard = {
         this.setaudio();
 
     },
+    // create audio and play a random audio when a key is pressed from any keyboard
     setaudio: function () {
         let num = Math.floor(Math.random() * 24) + 1;
         const audio = new Audio(`./assets/key${num}.ogg`);
@@ -61,5 +66,6 @@ const keyBoard = {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+    // on full content loaded initialize the function
     keyBoard.init();
 })
